@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Team Danilex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css?v=3.4">
+    <link rel="icon" type="image/jpg" href="../favicon/favicon.jpg">
+    <style>
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            padding-top: 120px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+        }
+
+        .contact-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .contact-card p {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            position: relative;
+            padding: 1.5rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            min-width: 200px;
+            z-index: 1;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .neon-pulse {
+            background: #000;
+            border: 2px solid #0ff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            overflow: visible;
+        }
+
+        .neon-pulse::before,
+        .neon-pulse::after {
+            content: "";
+            position: absolute;
+            inset: -4px;
+            border: 2px solid #0ff;
+            border-radius: inherit;
+            animation: pulseOut 2s ease-out infinite;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        .neon-pulse::after {
+            animation-delay: 1s;
+        }
+
+        @keyframes pulseOut {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .back-link {
+            margin-top: 3rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="glass-nav">
+            <div class="logo"><a href="../index.html"
+                    style="text-decoration:none; color:inherit;">LEX<span>BEATS</span></a></div>
+            <div class="hamburger">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="../index.html" class="blob-btn">
+                        Inicio
+                        <span class="blob-btn__inner">
+                            <span class="blob-btn__blobs">
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="beats.html" class="blob-btn">
+                        Beats
+                        <span class="blob-btn__inner">
+                            <span class="blob-btn__blobs">
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="servicios.html" class="blob-btn">
+                        Servicios
+                        <span class="blob-btn__inner">
+                            <span class="blob-btn__blobs">
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+                <li><a href="contacto.html" class="glow-on-hover">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contact-container">
+        <h1 class="gradient-text">Ponte en contacto</h1>
+        <p>¿Tienes un proyecto en mente? Hablemos.</p>
+
+        <div class="contact-grid">
+            <!-- Danilex -->
+            <div class="contact-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎧</div>
+                <h3>Danilex</h3>
+                <p>Productor & Gestión</p>
+                <a href="https://wa.me/573246547009" class="neon-btn purple" target="_blank">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    WhatsApp
+                </a>
+                <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-dim);">324 654 7009</div>
+            </div>
+
+            <!-- Brayner Palma -->
+            <div class="contact-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎹</div>
+                <h3>Brayner Palma</h3>
+                <p>Producción Musical</p>
+                <a href="https://wa.me/573022165045" class="neon-btn green" target="_blank">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    WhatsApp
+                </a>
+                <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-dim);">302 216 5045</div>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">← Volver al inicio</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 LexBeats | Team Danilex. Todos los derechos reservados.</p>
+    </footer>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo">
+                </feColorMatrix>
+                <feComposite in2="goo" in="SourceGraphic" result="mix"></feComposite>
+            </filter>
+        </defs>
+    </svg>
+    <script src="../app.js?v=3.4"></script>
+</body>
+
+</html>

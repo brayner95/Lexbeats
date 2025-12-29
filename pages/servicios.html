@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios | LexBeats</title>
+    <meta name="description" content="Servicios de producción musical, mezcla y masterización a medida.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpg" href="../favicon/favicon.jpg">
+    <link rel="stylesheet" href="../css/style.css?v=3.4">
+    <style>
+        .page-container {
+            padding-top: 150px;
+            min-height: 80vh;
+            padding-left: 10%;
+            padding-right: 10%;
+            text-align: center;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="glass-nav">
+            <div class="logo"><a href="../index.html"
+                    style="text-decoration:none; color:inherit;">LEX<span>BEATS</span></a></div>
+            <div class="hamburger">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="../index.html" class="blob-btn">
+                        Inicio
+                        <span class="blob-btn__inner">
+                            <span class="blob-btn__blobs">
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="beats.html" class="blob-btn">
+                        Beats
+                        <span class="blob-btn__inner">
+                            <span class="blob-btn__blobs">
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="servicios.html" class="blob-btn">
+                        Servicios
+                        <span class="blob-btn__inner">
+                            <span class="blob-btn__blobs">
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+                <li><a href="contacto.html" class="glow-on-hover">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-container">
+        <h1 class="gradient-text">Nuestros Servicios</h1>
+        <p style="color: #F5F5F0; font-size: 1.2rem; margin-bottom: 3rem;">Lleva tu música al nivel profesional con
+            nuestro equipo.</p>
+
+        <div class="service-card">
+            <h2 style="color: var(--secondary); margin-bottom: 1rem;">Mezcla y Masterización</h2>
+            <p style="color: var(--text-dim);">Ofrecemos servicios de mezcla y masterización para que tus tracks suenen
+                nítidos y potentes en todas las plataformas.</p>
+        </div>
+
+        <div class="service-card">
+            <h2 style="color: var(--secondary); margin-bottom: 1rem;">Producción a Medida</h2>
+            <p style="color: var(--text-dim);">¿Necesitas un beat exclusivo? Trabajamos contigo para crear el sonido
+                exacto que tienes en mente.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.youtube.com/@Lexbeats123" target="_blank" class="youtube-btn">
+                ▶ Únete a nuestro canal de YouTube
+            </a>
+        </div>
+        <p>&copy; 2025 LexBeats. Todos los derechos reservados.</p>
+    </footer>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo">
+                </feColorMatrix>
+                <feComposite in2="goo" in="SourceGraphic" result="mix"></feComposite>
+            </filter>
+        </defs>
+    </svg>
+
+    <script src="../app.js?v=3.4"></script>
+</body>
+
+</html>
