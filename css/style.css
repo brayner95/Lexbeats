@@ -165,7 +165,7 @@ button:hover {
 }
 
 .beat-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.08);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 1.5rem;
@@ -174,13 +174,14 @@ button:hover {
 }
 
 .beat-card h3 {
-    color: #000000;
+    color: #ffffff;
     margin-bottom: 0.5rem;
     font-weight: 700;
 }
 
 .beat-card:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
 }
 
 /* Visuals */
