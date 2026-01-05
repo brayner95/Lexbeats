@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Cita | LexBeats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css?v=3.5">
+    <link rel="icon" type="image/jpg" href="../favicon/favicon.jpg">
+    <style>
+        .agendar-container {
+            padding-top: 150px;
+            padding-bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .agendar-container p {
+            margin-bottom: 2rem;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        .back-link {
+            margin-top: 3rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .back-link:hover {
+            color: white;
+            transform: translateX(-10px);
+        }
+
+        /* Responsive fixes */
+        @media (max-width: 768px) {
+            .agendar-container {
+                padding-top: 120px;
+            }
+
+            .glass-form-container {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="glass-nav">
+            <div class="logo"><a href="../index.html"
+                    style="text-decoration:none; color:inherit;">LEX<span>BEATS</span></a></div>
+            <div class="hamburger">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="../index.html" class="blob-btn">
+                        Inicio
+                        <span class="blob-btn__inner">
+                            <span class="blob-btn__blobs">
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="beats.html" class="blob-btn">
+                        Beats
+                        <span class="blob-btn__inner">
+                            <span class="blob-btn__blobs">
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                                <span class="blob-btn__blob"></span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+                <li><a href="contacto.html" class="glow-on-hover">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="agendar-container">
+        <h1 class="gradient-text">Agendar Cita</h1>
+        <p>Regístrate para coordinar una sesión con nosotros.</p>
+
+        <div class="glass-form-container">
+            <form id="agendarForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre artístico o real" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha">Fecha Sugerida</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hora">Hora Sugerida</label>
+                    <input type="time" id="hora" name="hora" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="servicio">Servicio de Interés</label>
+                    <select id="servicio" name="servicio" required>
+                        <option value="" disabled selected>Selecciona un servicio</option>
+                        <option value="produccion">Producción de Beat</option>
+                        <option value="mezcla">Mezcla y Master</option>
+                        <option value="grabacion">Sesión de Grabación</option>
+                        <option value="asesoria">Asesoría Musical</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Detalles Adicionales</label>
+                    <textarea id="mensaje" name="mensaje" rows="4"
+                        placeholder="Cuéntanos más sobre tu proyecto..."></textarea>
+                </div>
+
+                <div class="form-submit-container">
+                    <button type="submit" class="primary-btn form-submit-btn">Enviar Solicitud</button>
+                </div>
+            </form>
+        </div>
+
+        <a href="../index.html" class="back-link">← Volver al inicio</a>
+    </main>
+
+    <footer>
+        <p id="admin-trigger">&copy; 2025 LexBeats | Team Danilex. Todos los derechos reservados.</p>
+    </footer>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo">
+                </feColorMatrix>
+                <feComposite in2="goo" in="SourceGraphic" result="mix"></feComposite>
+            </filter>
+        </defs>
+    </svg>
+
+    <script src="../app.js?v=3.5"></script>
+    <script>
+        // Configuración de Agenda desde LocalStorage
+        const agendaSettings = JSON.parse(localStorage.getItem('lexbeats_agenda_settings')) || {
+            disabledDates: [],
+            startTime: "09:00",
+            endTime: "18:00"
+        };
+
+        const dateInput = document.getElementById('fecha');
+        const timeInput = document.getElementById('hora');
+
+        // Establecer fecha mínima como mañana
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dateInput.min = tomorrow.toISOString().split('T')[0];
+
+        dateInput.addEventListener('change', function () {
+            const selectedDate = this.value; // Formato YYYY-MM-DD
+            if (agendaSettings.disabledDates.includes(selectedDate)) {
+                alert('Lo sentimos, este día no estamos disponibles para citas. Por favor selecciona otro día marcado en azul en nuestro calendario.');
+                this.value = '';
+            }
+        });
+
+        // Validar rango horario
+        timeInput.addEventListener('change', function () {
+            if (this.value < agendaSettings.startTime || this.value > agendaSettings.endTime) {
+                alert(`Nuestro horario de atención es de ${agendaSettings.startTime} a ${agendaSettings.endTime}.`);
+                this.value = '';
+            }
+        });
+
+
+        document.getElementById('agendarForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('¡Gracias! Tu solicitud ha sido enviada. Nos pondremos en contacto contigo pronto.');
+            this.reset();
+        });
+
+        // Acceso secreto a Admin (Doble clic en el footer)
+        document.getElementById('admin-trigger').addEventListener('dblclick', function () {
+            window.location.href = 'admin.html';
+        });
+    </script>
+</body>
+
+</html>

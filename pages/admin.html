@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | LexBeats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css?v=3.5">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: #0a0a0c;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--glass-border);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .sidebar-logo span {
+            color: var(--secondary);
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+        }
+
+        .nav-item {
+            padding: 1rem;
+            border-radius: 12px;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--secondary);
+        }
+
+        .nav-item.active {
+            background: var(--gradient-hero);
+            color: white;
+            box-shadow: 0 4px 15px rgba(112, 0, 255, 0.3);
+        }
+
+        /* Content Area */
+        .admin-main {
+            flex: 1;
+            margin-left: 280px;
+            padding: 3rem;
+            max-width: 1200px;
+        }
+
+        .admin-section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .settings-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .settings-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .settings-card h2 {
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1rem;
+        }
+
+
+        #login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0c;
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .exit-btn {
+            margin-top: auto;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: #ff4d4d;
+        }
+
+        .exit-btn:hover {
+            background: rgba(255, 0, 0, 0.1);
+        }
+
+        @media (max-width: 968px) {
+            .sidebar {
+                width: 80px;
+                padding: 2rem 0.5rem;
+            }
+
+            .sidebar-logo,
+            .nav-group-title,
+            .nav-item span {
+                display: none;
+            }
+
+            .admin-main {
+                margin-left: 80px;
+                padding: 1.5rem;
+            }
+
+            .nav-item {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login-modal">
+        <div class="glass-form-container" style="max-width: 400px; text-align: center;">
+            <h2 style="margin-bottom: 2rem;">Acceso Admin</h2>
+            <div class="form-group">
+                <input type="password" id="admin-pass" placeholder="Ingresa la contraseña">
+            </div>
+            <button class="primary-btn" onclick="checkPass()">Entrar</button>
+        </div>
+    </div>
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">LEX<span>BEATS</span></div>
+
+        <div class="nav-group">
+            <div class="nav-group-title">Administración</div>
+            <div class="nav-item active" onclick="showSection('calendar', this)">
+                <span>📅</span> <span>Configuración Calendario</span>
+            </div>
+            <div class="nav-item" onclick="showSection('email', this)">
+                <span>📧</span> <span>Configuración Correo</span>
+            </div>
+        </div>
+
+        <a href="../index.html" class="nav-item exit-btn">
+            <span>🚪</span> <span>Salir del Panel</span>
+        </a>
+    </aside>
+
+    <main class="admin-main">
+        <!-- SECCIÓN CALENDARIO -->
+        <section id="section-calendar" class="admin-section active">
+            <h1 class="gradient-text">Agenda & Disponibilidad</h1>
+            <div class="settings-grid">
+                <div class="settings-card" style="grid-column: span 2;">
+                    <h2>Calendario de Sesiones</h2>
+                    <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1.5rem;">Gestiona los días en
+                        los que el estudio está abierto para agendamiento.</p>
+                    <div id="admin-calendar"></div>
+                </div>
+
+                <div class="settings-card">
+                    <h2>Rango Horario</h2>
+                    <div class="form-group">
+                        <label>Hora Inicio</label>
+                        <input type="time" id="start-time" value="09:00">
+                    </div>
+                    <div class="form-group">
+                        <label>Hora Fin</label>
+                        <input type="time" id="end-time" value="18:00">
+                    </div>
+                    <button class="primary-btn" style="width: 100%; margin-top: 1rem;" onclick="saveSettings()">Guardar
+                        Agenda</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CORREO -->
+        <section id="section-email" class="admin-section">
+            <h1 class="gradient-text">Envío de Notificaciones</h1>
+            <div class="settings-grid">
+                <div class="settings-card">
+                    <h2>Servidor de Relay</h2>
+                    <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1.5rem;">Parametriza las
+                        credenciales para los correos automáticos.</p>
+                    <div class="form-group">
+                        <label>Tipo de Servidor</label>
+                        <select id="relay-type">
+                            <option value="smtp">SMTP Estándar</option>
+                            <option value="gmail">Gmail Service</option>
+                            <option value="outlook">Outlook / Office 365</option>
+                            <option value="sendgrid">SendGrid API</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Emisor</label>
+                        <input type="email" id="relay-email" placeholder="estudio@lexbeats.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña / App Secret</label>
+                        <input type="password" id="relay-pass" placeholder="••••••••••••">
+                    </div>
+                    <button class="primary-btn" style="width: 100%; margin-top: 1rem;"
+                        onclick="saveRelaySettings()">Guardar Relay</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let disabledDates = [];
+        let currentYear = new Date().getFullYear();
+        let currentMonth = new Date().getMonth();
+
+        function checkPass() {
+            const pass = document.getElementById('admin-pass').value;
+            if (pass === 'admin123') {
+                document.getElementById('login-modal').style.display = 'none';
+                loadSettings();
+                showSection('calendar', document.querySelector('.nav-item.active')); // Show calendar by default after login
+            } else { alert('Contraseña incorrecta'); }
+        }
+
+        function showSection(sectionId, clickedElement) {
+            document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+
+            document.getElementById(`section-${sectionId}`).classList.add('active');
+            if (clickedElement) {
+                clickedElement.classList.add('active');
+            }
+
+            if (sectionId === 'calendar') renderCalendar();
+        }
+
+        function renderCalendar() {
+            const container = document.getElementById('admin-calendar');
+            container.innerHTML = '';
+
+            const header = document.createElement('div');
+            header.style = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;';
+            header.innerHTML = `
+                <button class="secondary-btn" style="padding: 0.5rem 1rem;" onclick="changeMonth(-1)">←</button>
+                <h3 style="margin:0">${new Intl.DateTimeFormat('es-ES', { month: 'long', year: 'numeric' }).format(new Date(currentYear, currentMonth))}</h3>
+                <button class="secondary-btn" style="padding: 0.5rem 1rem;" onclick="changeMonth(1)">→</button>
+            `;
+            container.appendChild(header);
+
+            const grid = document.createElement('div');
+            grid.style = 'display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; text-align: center;';
+
+            ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'].forEach(d => {
+                grid.innerHTML += `<div style="font-weight: bold; color: var(--secondary); font-size: 0.8rem;">${d}</div>`;
+            });
+
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const offset = firstDay === 0 ? 6 : firstDay - 1;
+
+            for (let i = 0; i < offset; i++) grid.innerHTML += '<div></div>';
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                const isDisabled = disabledDates.includes(dateStr);
+                const dayEl = document.createElement('div');
+                dayEl.innerText = d;
+                dayEl.style = `padding: 15px; border-radius: 12px; cursor: pointer; background: ${isDisabled ? 'rgba(255,255,255,0.03)' : 'rgba(0, 212, 255, 0.1)'}; border: 1px solid ${isDisabled ? 'rgba(255,255,255,0.05)' : 'var(--secondary)'}; transition: all 0.3s ease; color: ${isDisabled ? '#555' : 'white'};`;
+                dayEl.onclick = () => toggleDate(dateStr);
+                grid.appendChild(dayEl);
+            }
+            container.appendChild(grid);
+        }
+
+        function changeMonth(dir) {
+            currentMonth += dir;
+            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+            if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+            renderCalendar();
+        }
+
+        function toggleDate(dateStr) {
+            if (disabledDates.includes(dateStr)) disabledDates = disabledDates.filter(d => d !== dateStr);
+            else disabledDates.push(dateStr);
+            renderCalendar();
+        }
+
+        function saveSettings() {
+            const settings = JSON.parse(localStorage.getItem('lexbeats_agenda_settings')) || {};
+            settings.disabledDates = disabledDates;
+            settings.startTime = document.getElementById('start-time').value;
+            settings.endTime = document.getElementById('end-time').value;
+            localStorage.setItem('lexbeats_agenda_settings', JSON.stringify(settings));
+            alert('Configuración de agenda guardada');
+        }
+
+        function saveRelaySettings() {
+            const settings = JSON.parse(localStorage.getItem('lexbeats_agenda_settings')) || {};
+            settings.relay = {
+                type: document.getElementById('relay-type').value,
+                email: document.getElementById('relay-email').value,
+                pass: document.getElementById('relay-pass').value
+            };
+            localStorage.setItem('lexbeats_agenda_settings', JSON.stringify(settings));
+            alert('Configuración de Relay guardada');
+        }
+
+        function loadSettings() {
+            const saved = localStorage.getItem('lexbeats_agenda_settings');
+            if (saved) {
+                const settings = JSON.parse(saved);
+                disabledDates = settings.disabledDates || [];
+                document.getElementById('start-time').value = settings.startTime || "09:00";
+                document.getElementById('end-time').value = settings.endTime || "18:00";
+                if (settings.relay) {
+                    document.getElementById('relay-type').value = settings.relay.type;
+                    document.getElementById('relay-email').value = settings.relay.email;
+                    document.getElementById('relay-pass').value = settings.relay.pass;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
